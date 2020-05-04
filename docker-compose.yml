@@ -8,8 +8,6 @@ volumes:
 services:
   frontend:
     environment:
-      - SKIP_DB_INITIALIZATION=true
-      - SKIP_RABBIT_MQ=true
       - ENABLE_RERECAPTCHA=false
       - UNICORN_CENIT_SERVER=true
       - UNICORN_WORKERS=5
@@ -27,7 +25,8 @@ services:
 
   background:
     environment:
-      - SKIP_ASSETS_COMPILE=true
+      - SKIP_DB_INITIALIZATION=false
+      - SKIP_RABBIT_MQ=false
       - ENABLE_RERECAPTCHA=false
       - SCHEDULER_LOOKUP_INTERVAL=8
       - UNICORN_CENIT_SERVER=true
