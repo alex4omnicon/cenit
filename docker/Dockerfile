@@ -33,16 +33,10 @@ RUN mkdir -p /var/www/shared/log
 RUN mkdir -p /var/www/shared/pids
 RUN mkdir -p /var/www/shared/sockets
 
-ENV SKIP_ASSETS_COMPILE=false
 ENV RAILS_ENV='production'
 ENV RACK_ENV='production'
-ENV SKIP_DB_INITIALIZATION=true
-ENV SKIP_MONGO_CLIENT=true
-ENV SKIP_RABBIT_MQ=true
 
 #Install gems
 RUN bundle install --jobs 20 --retry 5 --without development test
-
-RUN if $SKIP_ASSETS_COMPILE ; then set -x; else bundle exec rake assets:precompile ; fi
 
 EXPOSE 8080

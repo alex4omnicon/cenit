@@ -16,7 +16,7 @@ services:
       - REDIS_HOST=redis
       # more options in application.example.yml
     command: ["bundle", "exec", "unicorn", "-c", "config/unicorn.rb"]
-    build: .
+    image: alejandro92/cenit:assets
     ports:
       - "80:8080"
     depends_on:
@@ -37,7 +37,7 @@ services:
       - RABBITMQ_BIGWIG_TX_URL=amqp://cenit_rabbit:cenit_rabbit@rabbitmq/cenit_rabbit_vhost
       # more options in application.example.yml
     command: ["bundle", "exec", "unicorn", "-c", "config/unicorn.rb"]
-    build: .
+    image: alejandro92/cenit
     depends_on:
       - mongo_server
       - redis
